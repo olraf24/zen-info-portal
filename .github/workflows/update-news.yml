@@ -1,0 +1,121 @@
+name: Update Zen News Portal
+
+on:
+  schedule:
+    # Uruchamia się co 2 godziny
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # Możliwość ręcznego uruchomienia
+  push:
+    branches: [ main ]
+    paths: 
+      - 'src/**'
+      - 'package.json'
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+    
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: 📦 Install dependencies
+      run: |
+        npm ci
+        echo "Dependencies installed at $(date)" >> deployment.log
+    
+    - name: 📰 Collect latest news
+      run: |
+        echo "Starting news collection at $(date)"
+        node src/utils/newsCollector.js
+        echo "News collection completed at $(date)" >> deployment.log
+      continue-on-error: true
+    
+    - name: 🏗️ Build React app
+      run: |
+        npm run build
+        echo "Build completed at $(date)" >> deployment.log
+        
+        # Verify build output
+        if [ ! -d "dist" ]; then
+          echo "❌ Build failed - no dist directory"
+          exit 1
+        fi
+        
+        echo "✅ Build successful - $(du -sh dist | cut -f1) total size"
+    
+    - name: 📤 Commit updated data
+      run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        
+        # Add changes if any exist
+        git add src/data/ deployment.log
+        
+        # Only commit if there are changes
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🤖 Auto-update: News & Art $(date '+%Y-%m-%d %H:%M UTC')"
+          git push
+          echo "Changes committed and pushed"
+        fi
+    
+    - name: 🚀 Deploy to GitHub Pages
+      uses: actions/deploy-pages@v3
+      with:
+        artifact_name: github-pages
+        
+    - name: 📊 Upload build artifacts
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./dist
+        
+    - name: 🔍 Deployment Summary
+      run: |
+        echo "## 🌟 Zen Info Portal Deployment" >> $GITHUB_STEP_SUMMARY
+        echo "**Status:** ✅ Successful" >> $GITHUB_STEP_SUMMARY
+        echo "**Time:** $(date)" >> $GITHUB_STEP_SUMMARY
+        echo "**Articles:** $(jq length src/data/articles.json 2>/dev/null || echo 'N/A')" >> $GITHUB_STEP_SUMMARY
+        echo "**Size:** $(du -sh dist 2>/dev/null | cut -f1 || echo 'N/A')" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f "src/data/articles.json" ]; then
+          echo "### 📰 Latest Articles" >> $GITHUB_STEP_SUMMARY
+          jq -r '.[:3] | .[] | "- **\(.title)** (\(.source))"' src/data/articles.json >> $GITHUB_STEP_SUMMARY
+        fi
+
+  # Osobny job do monitorowania kondycji
+  health-check:
+    needs: update-and-deploy
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: 🏥 Health Check
+      run: |
+        echo "Checking portal health..."
+        
+        # Sprawdź czy strona odpowiada (po 2 minutach na propagację)
+        sleep 120
+        
+        SITE_URL="https://zen-info.pl"
+        if curl -sSf "$SITE_URL" > /dev/null; then
+          echo "✅ Portal is responding correctly"
+        else
+          echo "⚠️ Portal health check failed"
+          # Opcjonalnie wyślij notyfikację
+        fi
