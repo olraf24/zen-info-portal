@@ -1,0 +1,64 @@
+name: 🚀 Simple Build & Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    
+    steps:
+    - name: 📥 Checkout
+      uses: actions/checkout@v4
+    
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: 📦 Install dependencies (force)
+      run: |
+        echo "📋 Files in repo:"
+        ls -la
+        
+        echo "📋 Package files:"
+        ls -la package*
+        
+        # Zawsze rób npm install (generuje lock file jeśli nie ma)
+        npm install
+        
+        echo "✅ Dependencies installed!"
+        npm list --depth=0
+    
+    - name: 🏗️ Build React app
+      run: |
+        echo "🏗️ Building React app..."
+        npm run build
+        
+        # Sprawdź czy build się udał
+        if [ -d "dist" ]; then
+          echo "✅ Build successful!"
+          ls -la dist/
+        else
+          echo "❌ Build failed - no dist directory"
+          exit 1
+        fi
+    
+    - name: 🚀 Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        cname: zen-info.pl
+    
+    - name: ✅ Success
+      run: |
+        echo "🎉 Portal deployed successfully!"
+        echo "Check: https://olraf24.github.io/zen-info-portal/"
