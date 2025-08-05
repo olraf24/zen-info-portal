@@ -1,0 +1,12 @@
+{
+  "title": "Kompozycja abstrakcyjna #247",
+  "artist": "AI Generated",
+  "description": "Minimalistyczna kompozycja w odcieniach szarości, eksplorująca relacje między przestrzenią a formą. Dzieło powstało przy użyciu algorytmów generatywnych, które analizują klasyczne zasady kompozycji i przekładają je na współczesny język wizualny.",
+  "imageUrl": "data:image/svg+xml,%3Csvg width='400' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='400' height='300' fill='%23f8f9fa'/%3E%3Crect x='50' y='50' width='120' height='80' fill='%23343a40'/%3E%3Ccircle cx='300' cy='150' r='60' fill='%23868e96'/%3E%3Cpath d='M150 200 L250 180 L200 250 Z' fill='%23495057'/%3E%3C/svg%3E",
+  "date": "2025-08-05",
+  "medium": "Grafika cyfrowa",
+  "dimensions": "400x300px",
+  "tags": ["abstrakcja", "minimalizm", "kompozycja", "szarości"],
+  "inspiration": "Inspirowane pracami Kazimira Malewicza i współczesnym designem UI/UX",
+  "updatedAt": "2025-08-05T16:30:00Z"
+}
