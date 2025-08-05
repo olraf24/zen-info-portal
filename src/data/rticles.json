@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "title": "Tragiczny wypadek podczas pościgu za pijanym kierowcą",
+    "category": "Bezpieczeństwo", 
+    "summary": "Funkcjonariusz mazowieckiej policji stracił życie w trakcie służbowej interwencji związanej z pościgiem za nietrzeźwym motorystą.",
+    "content": "W tragicznych okolicznościach zginął asp. szt. z mazowieckiej komendy policji. Do zdarzenia doszło podczas akcji przeciwko nietrzeźwemu kierowcy. Policjant pełnił służbę, gdy doszło do nieszczęśliwego wypadku. Szczegóły sprawy są obecnie wyjaśniane przez odpowiednie służby. Rodzinie i współpracownikom składamy wyrazy współczucia.",
+    "source": "Interia",
+    "date": "2025-08-05",
+    "priority": "wysoki",
+    "originalLink": "https://wydarzenia.interia.pl/mazowieckie/news-scigal-nietrzezwego-kierowce-policjant-zginal-podczas-interw,nId,22172089",
+    "collectedAt": "2025-08-05T16:30:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Rosja krytykuje amerykańskie sankcje gospodarcze",
+    "category": "Polityka",
+    "summary": "Kreml określił jako 'bezprawne' groźby Donalda Trumpa dotyczące dodatkowych ceł na indyjskie towary w związku z zakupem rosyjskiej ropy.",
+    "content": "Przedstawiciel Kremla Dmitrij Pieskow skomentował najnowsze wypowiedzi amerykańskiego prezydenta. Trump zagroził wprowadzeniem wyższych taryf celnych wobec Indii za kontynuowanie importu rosyjskich surowców energetycznych. Moskwa uznaje te działania za naruszenie międzynarodowych zasad handlu. Dodatkowo Rosja skrytykowała Mołdawię za skazanie prorosyjskiej działaczki Evghenii Guțul na siedem lat pozbawienia wolności.",
+    "source": "Interia", 
+    "date": "2025-08-05",
+    "priority": "wysoki",
+    "originalLink": "https://wydarzenia.interia.pl/zagranica/news-kreml-grzmi-po-kolejnych-naciskach-na-rosje-nielegalne-grozb,nId,22172060",
+    "collectedAt": "2025-08-05T16:30:00Z"
+  },
+  {
+    "id": 3,
+    "title": "Kontrowersyjna interwencja policji w Warszawie",
+    "category": "Bezpieczeństwo",
+    "summary": "Stołeczne służby porządkowe tłumaczą się z reakcji na bójkę obcokrajowców na Wilanowie, która została nagrana i opublikowana w internecie.",
+    "content": "Warszawska policja wydała oświadczenie w sprawie incydentu z udziałem cudzoziemców, do którego doszło w dzielnicy Wilanów. Nagranie zdarzenia rozprzestrzeniło się w mediach społecznościowych, wywołując krytyczne komentarze internautów. Obserwatorzy zarzucali funkcjonariuszom niewystarczającą reakcję na zaistniałą sytuację. Służby wyjaśniają okoliczności swojego postępowania podczas tego zdarzenia.",
+    "source": "Interia",
+    "date": "2025-08-05", 
+    "priority": "średni",
+    "originalLink": "https://wydarzenia.interia.pl/mazowieckie/news-nagranie-awantury-cudzoziemcow-obieglo-siec-policja-sie-tlum,nId,22172107",
+    "collectedAt": "2025-08-05T16:30:00Z"
+  },
+  {
+    "id": 4,
+    "title": "Zatrzymanie sprawcy strzelaniny w województwie śląskim",
+    "category": "Bezpieczeństwo",
+    "summary": "34-letni mężczyzna odpowiedzialny za postrzelenie 39-latka w Iwanowicach Małych został aresztowany przez policję.",
+    "content": "Funkcjonariusze z województwa śląskiego zakończyli poszukiwania sprawcy strzelaniny w miejscowości Iwanowice Małe pod Kłobuckiem. 34-letni podejrzany został zatrzymany w związku z atakiem na 39-letniego mężczyznę. Poszkodowany trafił do szpitala z obrażeniami postrzałowymi. Śledczy wyjaśniają motywy oraz okoliczności tego przestępstwa.",
+    "source": "Interia",
+    "date": "2025-08-05",
+    "priority": "średni", 
+    "originalLink": "https://wydarzenia.interia.pl/slaskie/news-strzelanina-pod-klobuckiem-34-letni-poszukiwany-w-rekach-pol,nId,22172129",
+    "collectedAt": "2025-08-05T16:30:00Z"
+  },
+  {
+    "id": 5,
+    "title": "Tajemnicze spotkanie prezydenta z marszałkiem Sejmu",
+    "category": "Polityka",
+    "summary": "Pojawiły się spekulacje dotyczące nieplanowanego spotkania Andrzeja Dudy z Szymonem Hołownią, które wywołało zamieszanie w mediach.",
+    "content": "W kuluarach politycznych pojawiły się informacje o nieoficjalnym spotkaniu głowy państwa z marszałkiem Sejmu. Przedstawiciele obu stron początkowo zaprzeczali, że doszło do jakiegokolwiek planowanego, dłuższego spotkania. Spekulacje medialne sugerują możliwość omówienia ważnych kwestii państwowych. Szczegóły ewentualnych rozmów pozostają nieujawnione.",
+    "source": "Interia",
+    "date": "2025-08-05",
+    "priority": "średni",
+    "originalLink": "https://wydarzenia.interia.pl/kraj/news-zamieszanie-wokol-spotkania-dudy-z-holownia-nic-mi-nie-wiado,nId,22172088",
+    "collectedAt": "2025-08-05T16:30:00Z"
+  },
+  {
+    "id": 6,
+    "title": "Skazanie prorosyjskiej liderki w Mołdawii",
+    "category": "Polityka",
+    "summary": "Evghenia Guțul, przywódczyni autonomicznej Gagauzji, otrzymała wyrok siedmiu lat więzienia w kontekście zbliżających się wyborów parlamentarnych.",
+    "content": "Sąd w Mołdawii skazał Evghenię Guțul, szefową władz regionu Gagauzja, na siedem lat pozbawienia wolności. Polityk znana jest z prorosyjskich poglądów i stanowi kluczową postać opozycyjnej koalicji przed nadchodzącymi wyborami do parlamentu. Decyzja sądu może znacząco wpłynąć na układ sił politycznych w kraju. Sprawa wywołuje kontrowersje dotyczące standardów demokratycznych w regionie.",
+    "source": "Interia",
+    "date": "2025-08-05",
+    "priority": "wysoki",
+    "originalLink": "https://wydarzenia.interia.pl/zagranica/news-polityczne-trzesienie-ziemi-w-moldawii-prorosyjska-liderka-s,nId,22172124",
+    "collectedAt": "2025-08-05T16:30:00Z"
+  },
+  {
+    "id": 7,
+    "title": "Rewolucja w polskiej edukacji - koniec z pracą domową",
+    "category": "Edukacja",
+    "summary": "Rok po wprowadzeniu zmian eliminujących obowiązkowe zadania domowe, szkoły wypracowały nowe metody oceniania uczniów.",
+    "content": "Minął rok od wdrożenia reformy edukacyjnej, która zniosła przymus zadawania prac domowych. Placówki oświatowe zastąpiły tradycyjne zadania nowymi formami sprawdzania wiedzy: kartkówkami, projektami grupowymi oraz zadaniami określanymi jako 'doskonalące' i 'wyzwania'. Reakcje społeczności szkolnej są różnorodne - część uczniów i rodziców cieszy się ze zmian, podczas gdy inni wyrażają wątpliwości co do skuteczności nowego systemu.",
+    "source": "TVN24",
+    "date": "2025-04-01",
+    "priority": "średni",
+    "originalLink": "https://tvn24.pl/polska/szkola-bez-zadan-domowych-jak-wyglada-nauka-rok-po-zmianie-przepisow-st8384927",
+    "collectedAt": "2025-08-05T16:30:00Z"
+  },
+  {
+    "id": 8,
+    "title": "Pierwsza zagraniczna podróż Trumpa - Arabia Saudyjska",
+    "category": "Polityka",
+    "summary": "Prezydent USA wybrał Królestwo Arabii Saudyjskiej jako cel swojej inauguracyjnej wizyty zagranicznej, co wskazuje na priorytety ekonomiczne.",
+    "content": "Donald Trump ogłosił, że jego pierwsza oficjalna podróż zagraniczna jako prezydenta USA będzie miała miejsce w Arabii Saudyjskiej. Decyzja ta jest postrzegana jako sygnał dotyczący priorytetów gospodarczych nowej administracji. Wybór tego destynacji może wskazywać na planowane umocnienie współpracy ekonomicznej i energetycznej między krajami. Szczegóły wizyty oraz jej agenda pozostają w fazie planowania.",
+    "source": "TVN24",
+    "date": "2025-04-01",
+    "priority": "wysoki",
+    "originalLink": "https://tvn24.pl/swiat/donald-trump-wybiera-sie-w-pierwsza-podroz-zagraniczna-do-arabii-saudyjskiej-st8389719",
+    "collectedAt": "2025-08-05T16:30:00Z"
+  }
+]
