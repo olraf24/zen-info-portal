@@ -1,0 +1,59 @@
+{
+  "name": "zen-info-portal",
+  "version": "1.0.0",
+  "description": "Minimalistyczny portal informacyjny - zen-info.pl",
+  "main": "src/main.jsx",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "collect-news": "node src/utils/newsCollector.js",
+    "test-collector": "node src/utils/newsCollector.js",
+    "clean": "rm -rf dist",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "keywords": [
+    "news",
+    "portal",
+    "minimalist",
+    "react",
+    "rss",
+    "poland"
+  ],
+  "author": "zen-info.pl",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "lucide-react": "^0.263.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.3",
+    "vite": "^4.4.5",
+    "feedparser": "^2.2.10",
+    "node-fetch": "^3.3.1",
+    "gh-pages": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/USERNAME/zen-info-portal.git"
+  },
+  "homepage": "https://zen-info.pl",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
