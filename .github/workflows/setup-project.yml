@@ -45,9 +45,10 @@ jobs:
         mkdir -p src/data  
         mkdir -p src/utils
         mkdir -p src/styles
-        mkdir -p public
+        mkdir -p public/images/daily-art
         
         echo "✅ Folder structure created!"
+        echo "📁 Created: public/images/daily-art/ (for JPG images)"
         tree -a || find . -type d | sort
     
     - name: 📄 Create essential files
@@ -290,15 +291,43 @@ jobs:
         ]
         EOF
         
-        # Sample daily art
+        # Sample daily art (with JPG references)
         cat > src/data/daily-art.json << 'EOF'
         {
-          "title": "Pierwsze dzieło - Minimalistyczna kompozycja",
-          "artist": "GitHub Actions",
-          "description": "Automatycznie wygenerowana kompozycja SVG na początek działania portalu zen-info.pl",
-          "imageUrl": "data:image/svg+xml,%3Csvg width='400' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='400' height='300' fill='%23f8f9fa'/%3E%3Ctext x='200' y='150' text-anchor='middle' font-family='monospace' font-size='16' fill='%23495057'%3EPortal gotowy!%3C/text%3E%3C/svg%3E",
-          "date": "2025-08-05",
-          "updatedAt": "2025-08-05T16:30:00Z"
+          "current": {
+            "id": "art-001",
+            "title": "Minimalistyczny krajobraz górski",
+            "artist": "Anna Nowak",
+            "description": "Spokojny widok na pasmo górskie o świcie, uchwycony w minimalistycznym stylu z naciskiem na proste linie i naturalne kolory.",
+            "imageUrl": "/images/daily-art/art-001.jpg",
+            "date": "2025-08-05",
+            "medium": "Fotografia cyfrowa",
+            "location": "Tatry, Polska", 
+            "tags": ["natura", "góry", "minimalizm", "świt"],
+            "updatedAt": "2025-08-05T16:30:00Z"
+          },
+          "totalArtworks": 7,
+          "lastRotation": "2025-08-05T16:30:00Z",
+          "schedule": [
+            {
+              "date": "2025-08-05",
+              "artId": "art-001", 
+              "title": "Minimalistyczny krajobraz górski",
+              "imageUrl": "/images/daily-art/art-001.jpg"
+            },
+            {
+              "date": "2025-08-06",
+              "artId": "art-002",
+              "title": "Architektura współczesnej Warszawy", 
+              "imageUrl": "/images/daily-art/art-002.jpg"
+            },
+            {
+              "date": "2025-08-07",
+              "artId": "art-003",
+              "title": "Jesienne refleksje",
+              "imageUrl": "/images/daily-art/art-003.jpg"
+            }
+          ]
         }
         EOF
         
@@ -359,7 +388,45 @@ jobs:
         
         cat setup-summary.md
     
-    - name: 📤 Commit all changes
+    - name: 🖼️ Create placeholder images info
+      if: ${{ github.event.inputs.setup_type == 'full_setup' }}
+      run: |
+        # Create README for images folder
+        cat > public/images/daily-art/README.md << 'EOF'
+        # 🎨 Daily Art Images
+
+        Tutaj umieszczaj pliki JPG z dziełami artystycznymi na każdy dzień.
+
+        ## 📝 Naming convention:
+        - art-001.jpg, art-002.jpg, art-003.jpg...
+        - Maksymalnie 2MB na plik
+        - Rozdzielczość: 800x600px lub podobna (4:3)
+        - Format: JPG, PNG
+
+        ## 🔄 Jak dodać nowe dzieło:
+        1. Dodaj plik obrazu (np. art-008.jpg)
+        2. Zaktualizuj src/data/daily-art.json z metadanymi
+        3. System automatycznie rotuje obrazy codziennie
+
+        ## 📊 Status:
+        - Aktualnie: 0 obrazów (dodaj art-001.jpg, art-002.jpg...)
+        - Potrzebne: minimum 7 obrazów na tydzień
+        - Zalecane: 30+ obrazów na pełny miesiąc rotacji
+
+        ## 🎯 Przykładowe nazwy:
+        - art-001.jpg - "Krajobraz górski"
+        - art-002.jpg - "Architektura miasta" 
+        - art-003.jpg - "Natura abstrakcyjna"
+        - art-004.jpg - "Portret uliczny"
+        - art-005.jpg - "Minimalizm"
+        EOF
+        
+        # Create sample placeholder (1x1 pixel PNG as base64)
+        echo "Creating image placeholder..."
+        echo "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" | base64 -d > public/images/daily-art/.placeholder.png
+        
+        echo "✅ Image structure created!"
+        echo "📁 Add your JPG files to public/images/daily-art/"
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
