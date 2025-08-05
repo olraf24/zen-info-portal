@@ -1,0 +1,231 @@
+name: 📁 Create zen-info.pl Folder Structure
+
+on:
+  workflow_dispatch:
+    inputs:
+      include_placeholders:
+        description: 'Dodać pliki README w folderach?'
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+  create-structure:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: 🏗️ Create complete folder structure
+      run: |
+        echo "🏗️ Creating zen-info.pl folder structure..."
+        
+        # Main project folders
+        mkdir -p .github/workflows
+        mkdir -p src/components
+        mkdir -p src/data
+        mkdir -p src/utils
+        mkdir -p src/styles
+        mkdir -p public/images/daily-art
+        mkdir -p dist
+        
+        echo "✅ Folder structure created!"
+        echo ""
+        echo "📁 Created folders:"
+        find . -type d -not -path './.*' -not -path './node_modules*' | sort
+    
+    - name: 📝 Add README files to folders
+      if: ${{ github.event.inputs.include_placeholders == 'true' }}
+      run: |
+        echo "📝 Adding README files to explain folder purposes..."
+        
+        # .github/workflows README
+        cat > .github/workflows/README.md << 'EOF'
+        # 🤖 GitHub Actions Workflows
+
+        Tutaj znajdują się wszystkie automatyzacje zen-info.pl:
+
+        ## Pliki:
+        - `update-news.yml` - Pobieranie newsów co 2h
+        - `setup-project.yml` - Setup całego projektu
+        - `create-folders.yml` - Tworzenie struktury folderów
+        EOF
+        
+        # src/components README
+        cat > src/components/README.md << 'EOF'
+        # ⚛️ React Components
+
+        Komponenty React dla zen-info.pl:
+
+        ## Pliki:
+        - `ZenPortal.jsx` - Główny komponent portalu
+        - `ArticleCard.jsx` - Komponent artykułu (opcjonalny)
+        - `Navigation.jsx` - Nawigacja (opcjonalny)
+        EOF
+        
+        # src/data README
+        cat > src/data/README.md << 'EOF'
+        # 📊 Data Files (JSON Database)
+
+        "Baza danych" w postaci plików JSON:
+
+        ## Pliki:
+        - `articles.json` - Wszystkie artykuły z newsów
+        - `daily-art.json` - Metadata dzieł artystycznych
+        - `categories.json` - Konfiguracja kategorii (opcjonalny)
+        EOF
+        
+        # src/utils README
+        cat > src/utils/README.md << 'EOF'
+        # 🛠️ Utility Scripts
+
+        Skrypty pomocnicze i automatyzacje:
+
+        ## Pliki:
+        - `newsCollector.js` - Pobieranie RSS feeds
+        - `artRotator.js` - Rotacja dzieł artystycznych (opcjonalny)
+        - `categoryMapper.js` - Mapowanie kategorii (opcjonalny)
+        EOF
+        
+        # src/styles README
+        cat > src/styles/README.md << 'EOF'
+        # 🎨 Styles
+
+        Style CSS i konfiguracja wyglądu:
+
+        ## Pliki:
+        - `globals.css` - Główne style Tailwind
+        - `components.css` - Style komponentów (opcjonalny)
+        - `variables.css` - CSS variables (opcjonalny)
+        EOF
+        
+        # public/images/daily-art README (detailed)
+        cat > public/images/daily-art/README.md << 'EOF'
+        # 🖼️ Daily Art Images
+
+        **Tutaj umieszczaj pliki JPG z dziełami artystycznymi na każdy dzień.**
+
+        ## 📝 Naming Convention:
+        ```
+        art-001.jpg    # Dzieło nr 1
+        art-002.jpg    # Dzieło nr 2
+        art-003.jpg    # Dzieło nr 3
+        ...
+        art-030.jpg    # 30 dzieł na miesiąc
+        ```
+
+        ## 📐 Specyfikacja obrazów:
+        - **Format:** JPG, PNG, WebP
+        - **Rozmiar:** maksymalnie 2MB
+        - **Rozdzielczość:** 800x600px (4:3) lub podobna
+        - **Jakość:** wysoka, czytelna
+
+        ## 🔄 Jak dodać nowe dzieło:
+        1. **Dodaj plik** (np. `art-008.jpg`)
+        2. **Zaktualizuj** `src/data/daily-art.json` z metadanymi
+        3. **System automatycznie** rotuje obrazy codziennie
+
+        ## 📊 Status:
+        - **Aktualnie:** 0 obrazów
+        - **Minimalne:** 7 obrazów (tydzień)
+        - **Zalecane:** 30+ obrazów (miesiąc rotacji)
+
+        ## 🎯 Przykłady nazw i tematów:
+        - `art-001.jpg` - "Minimalistyczny krajobraz"
+        - `art-002.jpg` - "Architektura miasta"
+        - `art-003.jpg` - "Abstrakcyjna kompozycja"
+        - `art-004.jpg` - "Fotografia uliczna"
+        - `art-005.jpg` - "Natura i przyroda"
+
+        ## ⚠️ Ważne:
+        - Używaj tylko **wolnych od praw autorskich** obrazów
+        - Lub **własnych** fotografii/dzieł
+        - Sprawdź licencje przed dodaniem
+        EOF
+        
+        echo "✅ README files created in all folders!"
+    
+    - name: 🔍 Structure verification
+      run: |
+        echo "🔍 Verifying created structure..."
+        echo ""
+        echo "📊 STRUCTURE SUMMARY:"
+        echo "==================="
+        
+        # Count folders
+        FOLDER_COUNT=$(find . -type d -not -path './.*' -not -path './node_modules*' | wc -l)
+        echo "📁 Total folders: $FOLDER_COUNT"
+        
+        # Count README files
+        README_COUNT=$(find . -name "README.md" | wc -l)
+        echo "📝 README files: $README_COUNT"
+        
+        echo ""
+        echo "📂 FOLDER TREE:"
+        echo "==============="
+        tree -a -I 'node_modules|.git' || find . -type d -not -path './.*' -not -path './node_modules*' | sort | sed 's/^/  /'
+        
+        echo ""
+        echo "📄 FILES CREATED:"
+        echo "=================="
+        find . -name "README.md" | sort | sed 's/^/  /'
+        
+        echo ""
+        echo "✅ Structure verification complete!"
+    
+    - name: 📤 Commit structure
+      run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        
+        git add .
+        
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "📁 Create zen-info.pl folder structure
+
+          🏗️ Created complete project structure:
+          - .github/workflows/ (automation)
+          - src/components/ (React components)  
+          - src/data/ (JSON database)
+          - src/utils/ (helper scripts)
+          - src/styles/ (CSS files)
+          - public/images/daily-art/ (JPG images)
+          
+          📝 Added README files with instructions
+          🤖 Generated by: create-folders workflow"
+          
+          git push
+          echo "✅ Folder structure committed and pushed!"
+        fi
+    
+    - name: 🎉 Success notification
+      run: |
+        echo ""
+        echo "🎉 SUCCESS! zen-info.pl folder structure created!"
+        echo "=================================================="
+        echo ""
+        echo "📁 Ready folders:"
+        echo "  ✅ .github/workflows/ - for GitHub Actions"
+        echo "  ✅ src/components/ - for React components"
+        echo "  ✅ src/data/ - for JSON data files"
+        echo "  ✅ src/utils/ - for utility scripts"
+        echo "  ✅ src/styles/ - for CSS styles"
+        echo "  ✅ public/images/daily-art/ - for JPG images"
+        echo ""
+        echo "📝 Each folder has README with instructions"
+        echo ""
+        echo "🚀 NEXT STEPS:"
+        echo "1. Start adding your files to appropriate folders"
+        echo "2. Add JPG images to public/images/daily-art/"
+        echo "3. Create your React components in src/components/"
+        echo "4. Run news collector to populate src/data/"
+        echo ""
+        echo "🌟 Your zen-info.pl structure is ready!"
