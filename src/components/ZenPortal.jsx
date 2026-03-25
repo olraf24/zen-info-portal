@@ -17,7 +17,7 @@ const ZenInfoPortal = () => {
         setLoading(true);
         
         // Load articles
-        const articlesResponse = await fetch('/data/articles.json');
+        const articlesResponse = await fetch(`${import.meta.env.BASE_URL}data/articles.json`);
         if (!articlesResponse.ok) {
           throw new Error('Failed to load articles');
         }
@@ -25,7 +25,7 @@ const ZenInfoPortal = () => {
         setArticles(articlesData);
 
         // Load daily art
-        const artResponse = await fetch('/data/daily-art.json');
+        const artResponse = await fetch(`${import.meta.env.BASE_URL}data/daily-art.json`);
         if (!artResponse.ok) {
           throw new Error('Failed to load daily art');
         }
@@ -180,7 +180,6 @@ const ZenInfoPortal = () => {
               onClick={() => setSelectedArticle(article)}
               className={`transition-colors flex items-center ${
                 darkMode ? 'hover:text-white' : 'hover:text-black'
-
               }`}
             >
               czytaj <ChevronRight className="w-3 h-3 ml-1" />
